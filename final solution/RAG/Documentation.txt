@@ -1,0 +1,100 @@
+Retrieval-Augmented Generation (RAG) System Documentation
+
+Introduction:
+
+Retrieval-Augmented Generation (RAG) combines document retrieval with text generation to produce accurate, context-aware responses. This document explains the key components, implementation, and usage of the RAG system.
+
+System Overview:
+
+The RAG system is composed of the following main parts:
+
+PDF Reader: Extracts raw text from a PDF document.
+
+Text Splitter: Breaks down large text into smaller, manageable chunks.
+
+Embedding Model: Uses Sentence Transformer to create vector representations of text chunks.
+
+Vector Database: Qdrant stores and retrieves vectors based on query relevance.
+
+Generative Model: Uses Hugging Face's GPT-2 for text generation based on the retrieved chunks.
+
+
+Implementation Details:
+
+1. Reading the PDF:
+
+Utilizes the fitz library to read and extract text from PDF documents.
+
+2. Text Splitting:
+Uses Sentence Splitter for breaking text into sentences.
+
+Implements RecursiveCharacterTextSplitter to create uniform text chunks.
+
+3. Embedding with SentenceTransformer:
+
+Converts text chunks into embeddings using the all-MiniLM-L6-v2 model.
+
+Embeddings are stored in Qdrant for efficient retrieval.
+
+4. Retrieval and Generation:
+
+Queries are converted into embeddings.
+
+Qdrant returns the top 5 relevant chunks.
+
+Hugging Face's pipeline with GPT-2 generates a coherent response.
+
+Usage Instructions:
+
+Setup Requirements:
+
+Qdrant must be running locally on localhost:6333.
+
+Required libraries include:
+
+-pymupdf (fitz)
+
+-qdrant-client
+
+-sentence_transformers
+
+-transformers
+
+Execution Steps:
+
+Provide the path to the PDF file.
+
+Run the script sequentially to:
+
+Read and split the text.
+
+Store embeddings.
+
+Retrieve and generate a response.
+
+Sample Query:
+query = "What is Retrieval-Augmented Generation?"
+response = retrieve_and_generate(query)
+print(response)
+
+Error Handling:
+
+The system includes basic exception handling to catch and print errors during response generation.
+
+Ensure Qdrant and Hugging Face models are properly set up before running the script.
+
+
+Optimization Opportunities:
+
+Caching: Implement caching to reduce embedding computations.
+
+Model Fine-Tuning: Fine-tune GPT-2 on domain-specific data.
+
+Scalability: Deploy using load balancing for high-demand environments.
+
+
+Conclusion:
+
+This RAG system demonstrates how integrating retrieval with generation improves the relevance and accuracy of responses. With scalable deployment and potential optimizations, this system can be adapted for various real-world applications.
+
+
