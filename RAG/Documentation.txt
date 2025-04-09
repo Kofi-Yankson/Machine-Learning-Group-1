@@ -28,8 +28,8 @@ it was hosted locally using docker at port 6333
 challenges were met in trying to user a different local port so the default port 6333 was used in the end
 
 Retrival
-teh code uses the top five chunks it comes accros in its search to generate the response
+the code uses the top five chunks it comes accros in its search to generate the response
 
 Response Generation
-The generation for the response wa smenat to be streamed but came accross issues with authentication of the api key being used which was sourced from openAI
+The generation for the response was meant to be streamed but came accross issues with authentication of the api key being used which was sourced from openAI
 this issue was resolved by using the "litellm._turn_on_debug()" as recommended by the error mesages that popped up upon running the cell containing the response code
